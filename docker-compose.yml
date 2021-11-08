@@ -1,5 +1,20 @@
 version: '3.7'
 services:
+  nest-api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: nest-api
+    command: npm run start:dev
+    restart: always
+    tty: true
+    stdin_open: true
+    volumes:
+    - '.:/usr/src/app'
+    ports:
+      - 3000:3000
+    depends_on:
+      - prisma-db
   prisma-db:
     container_name: prisma-db
     image: postgres:12

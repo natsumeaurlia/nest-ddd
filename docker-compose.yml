@@ -10,11 +10,14 @@ services:
     tty: true
     stdin_open: true
     volumes:
-    - '.:/usr/src/app'
+      - '.:/usr/src/app'
     ports:
       - 3000:3000
     depends_on:
       - prisma-db
+    env_file:
+      - .env
+
   prisma-db:
     container_name: prisma-db
     image: postgres:12
@@ -22,12 +25,9 @@ services:
       - "5403:5432"
     volumes:
       - prisma-store:/var/lib/postgresql/data
-    environment:
-      POSTGRES_USER: root
-      POSTGRES_PASSWORD: prisma
-      POSTGRES_DB: prisma
-      POSTGRES_INITDB_ARGS: "--encoding=UTF-8"
-      TZ: "Asia/Tokyo"
+    env_file:
+      - .env
+
   prisma-test-db:
     container_name: prisma-test-db
     image: postgres:12
@@ -35,12 +35,8 @@ services:
       - "5402:5432"
     volumes:
       - prisma-test-store:/var/lib/postgresql/data
-    environment:
-      POSTGRES_USER: root
-      POSTGRES_PASSWORD: prisma
-      POSTGRES_DB: prisma
-      POSTGRES_INITDB_ARGS: "--encoding=UTF-8"
-      TZ: "Asia/Tokyo"
+    env_file:
+      - .env
 
 volumes:
   prisma-store:

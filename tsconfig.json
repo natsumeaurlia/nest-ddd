@@ -11,6 +11,16 @@
     "outDir": "./dist",
     "baseUrl": "./",
     "incremental": true,
-    "skipLibCheck": true
+    "skipLibCheck": true,
+    "paths": {
+      "@app/*": ["./src/app/*"],
+      "@app": ["./src/app"],
+      "@domain/*": ["./src/domain/*"],
+      "@domain": ["./src/domain"],
+      "@infrastructure/*": ["./src/infrastructure/*"],
+      "@infrastructure": ["./src/infrastructure"],
+      "@util/*": ["./src/util/*"],
+      "@util": ["./src/util"]
+    }
   }
 }

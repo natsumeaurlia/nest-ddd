@@ -1,6 +1,6 @@
 import { ValueObject } from '../../common/vo';
 
-type status = 'ACTIVE' | 'REST' | 'WITHDRAW';
+export type status = 'ACTIVE' | 'REST' | 'WITHDRAW';
 
 interface EnrolledStatus {
   status: status;

@@ -5,7 +5,7 @@ import { Participant } from './entity/participant.entity';
  */
 export interface ParticipantRepositoryInterface {
   findAll(): Promise<Participant[]>;
-  findOne(participantId: string): Promise<Participant | null>;
+  find(participantId: number): Promise<Participant | null>;
   create(participant: Participant): Promise<Participant>;
   update(participant: Participant): Promise<Participant>;
   delete(participant: Participant): Promise<number>;

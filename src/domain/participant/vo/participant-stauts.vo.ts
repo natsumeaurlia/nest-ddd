@@ -1,9 +1,9 @@
 import { ValueObject } from '../../common/vo';
 
-export type status = 'ACTIVE' | 'REST' | 'WITHDRAW';
+export type Status = 'ACTIVE' | 'REST' | 'WITHDRAW';
 
 interface EnrolledStatus {
-  status?: status;
+  status?: Status;
 }
 
 export class ParticipantStatus extends ValueObject<EnrolledStatus> {
@@ -11,14 +11,14 @@ export class ParticipantStatus extends ValueObject<EnrolledStatus> {
     super(props);
   }
 
-  public get status(): string {
+  public getStatus(): Status {
     return this.props.status;
   }
 
-  public static create(props: EnrolledStatus): ParticipantStatus {
-    let status = props.status;
-    if (!props.status) {
-      status = 'ACTIVE';
+  public static create(props?: EnrolledStatus): ParticipantStatus {
+    let status: Status = 'ACTIVE';
+    if (props && props.status) {
+      status = props.status;
     }
     return new ParticipantStatus({ status });
   }

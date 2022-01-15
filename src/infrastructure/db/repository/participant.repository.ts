@@ -35,8 +35,8 @@ export class ParticipantRepository implements ParticipantRepositoryInterface {
   }
 
   public async findByEmail(email: string): Promise<Participant | null> {
-    const result = await this.prisma.participant.findUnique({
-      where: { email: email },
+    const result = await this.prisma.participant.findFirst({
+      where: { email },
     });
     return this.makeParticipant(result);
   }

@@ -1,11 +1,14 @@
-import { Injectable } from '@nestjs/common';
+import { Inject, Injectable } from '@nestjs/common';
 import { ParticipantRepositoryInterface } from '@domain/participant/participant.repository.interface';
 import { CreateParticipantDto } from '@app/dto/create-participant.dto';
 import { ParticipantStatus } from '@domain/participant/vo/participant-stauts.vo';
 
 @Injectable()
 export class ParticipantService {
-  constructor(private repo: ParticipantRepositoryInterface) {}
+  constructor(
+    @Inject('ParticipantRepositoryInterface')
+    private repo: ParticipantRepositoryInterface,
+  ) {}
 
   async create(props: CreateParticipantDto) {
     if (await this.repo.findByEmail(props.email)) {
